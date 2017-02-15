@@ -184,6 +184,7 @@ public class Example {
         while (iterator.hasNext()) {
             Map.Entry<String, String> pair = iterator.next();
             System.out.println(pair.getKey() + " - " + pair.getValue());
+            iterator.remove();// так удаляємо пару
         }
         for (Map.Entry<String, String> pair : var.entrySet()) { /* ... */ }
     }
