@@ -202,7 +202,11 @@ public class Example {
     /**Stack Trace*/
     public static String method1() {
         // method2();
+        /**створює обєкт Stack Trace */
         StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
+        /**отримує клас із якого був викликаний*/
+        StackTraceElement elements = stackTraceElements[2];
+        String classs = elements.getClassName();
         /**отримує назву метода який викликав даний метод */
         String s = stackTraceElements[2].getMethodName();
         /**отримує номер строчки з якої був викликаний даний метод */
