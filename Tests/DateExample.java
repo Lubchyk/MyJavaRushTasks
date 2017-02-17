@@ -44,7 +44,7 @@ public class DateExample {
         Date date1 = new Date(date);
         System.out.println(simpleDateFormat.format(date1));
     }
-
+    /**копіюємо файли */
     public static void fileCopy() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
