@@ -23,13 +23,12 @@ public class Solution {
         while (fileInputStream.available() > 0) {
 
             s = fileInputStream.read();
-
-
+            System.out.print((char) s);
         }
+        System.out.println();
 
-        System.out.print((char) s);
         reader.close();
         fileInputStream.close();
-//C:\Users\АНТ\Desktop\55.txt
+//C:\Users\АНТ\Desktop\55.txt C:\Users\mlv\Desktop\55.txt
     }
 }

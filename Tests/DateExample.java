@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -13,9 +11,10 @@ public class DateExample {
         isDateOdd("JANUARY 2 2020");
     }
 
-/**рахує скільки днів пройшло від початку року до вказаного числа*/
-    public static boolean isDateOdd(String date)
-    {
+    /**
+     * рахує скільки днів пройшло від початку року до вказаного числа
+     */
+    public static boolean isDateOdd(String date) {
         long msDay = 24 * 60 * 60 * 1000; // = число при діленні на яке отримуємо кількість днів
 
         Date yearEnd = new Date(date);
@@ -38,13 +37,19 @@ public class DateExample {
         System.out.println(dayCount);
         return true;
     }
-    /**показує дату у вказаному форматі, але дата свого формату не міняє*/
+
+    /**
+     * показує дату у вказаному форматі, але дата свого формату не міняє
+     */
     public void dateformat(String date) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMM d, yyyy", Locale.US);//вказання фомату і локалізацію
         Date date1 = new Date(date);
         System.out.println(simpleDateFormat.format(date1));
     }
-    /**копіюємо файли */
+
+    /**
+     * копіюємо файли
+     */
     public static void fileCopy() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
@@ -55,17 +60,52 @@ public class DateExample {
         java.io.FileOutputStream fileOutputStream = new java.io.FileOutputStream(destinationFileName);
 
         int count = 0;
-        while (fileInputStream.available()>0) {
+        while (fileInputStream.available() > 0) {
             int data = fileInputStream.read();
             fileOutputStream.write(data);
             count++;
+            System.out.println((char) fileInputStream.read()); // дрокуємо отриманий файл
         }
         System.out.println("Скопировано байт " + count);
         fileInputStream.close();
         fileOutputStream.close();
     }
-
-
+    /**записуємо строки у файл і виходимо фразою "exit" */
+    public static void fileWrite() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\mlv\\Desktop\\55.txt"));
+        String line;
+        for (; true; ) {
+            line = reader.readLine();
+            if (!line.equals("exit")) {
+                writer.write(line);
+                writer.newLine();
+            } else {
+                writer.write(line);
+                break;
+            }
+        }
+        reader.close();
+        writer.close();
+    }
+    /** то саме що і вище але інший спосіб*/
+    public static void fileWrite2() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        FileOutputStream fileOutputStream = new FileOutputStream("C:\\Users\\mlv\\Desktop\\55.txt");
+        String line;
+        String spase = "\r\n"; // нова строка
+        for (; true; ) {
+            line = reader.readLine();
+            if (!line.equals("exit")) {
+                 fileOutputStream.write((line + spase).getBytes());
+            } else {
+                fileOutputStream.write((line + spase).getBytes());
+                break;
+            }
+        }
+        reader.close();
+        fileOutputStream.close();
+    }
 
 
 }
