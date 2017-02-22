@@ -313,6 +313,7 @@ public class Example {
     /**те саме що і на один вище, але системний метод*/
     public Array sort(Array array) {
         Arrays.sort(new Array[]{array});
+       /**можна і так сортувати  --- */ // Collections.sort(list);
         return array;
     }
     /** метод передує, яка строка передує (тобто сортує строки за алфавітом)*/
@@ -334,6 +335,10 @@ public class Example {
         return true;
     }
 
+public void print(String a, int b, boolean c) {
+    System.out.println(String.format("%s атаковал робота %s, атакована %s, защищена",
+            a, b, c));
+}
 
 
 }

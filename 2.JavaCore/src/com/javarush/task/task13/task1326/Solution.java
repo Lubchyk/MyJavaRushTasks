@@ -25,17 +25,21 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 public class Solution {
     public static void main(String[] args) throws IOException {
+        BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader br2= new BufferedReader(new InputStreamReader(new FileInputStream(br1.readLine())));
+
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        FileInputStream fileInputStream = new FileInputStream(reader.readLine());
-        BufferedReader reader1 = new BufferedReader(new InputStreamReader(fileInputStream));
+        Scanner scanner = new Scanner(new FileInputStream(reader.readLine()));
+
         List<Integer> list = new ArrayList<>();
         String line;
         int data;
-        while ((line = reader1.readLine()) != null) {
-            data = Integer.parseInt(line);
+        while ((line = br2.readLine()) != null) {
+            data = scanner.nextInt();
             list.add(data);
         }
         int temp;
@@ -52,8 +56,14 @@ public class Solution {
             if (list.get(i) % 2 == 0)
             System.out.println(list.get(i));
         }
+
+
+
+
+//        br1.close();
+//        br2.close();
         reader.close();
-        reader1.close();
-        fileInputStream.close();
+        scanner.close();
+
     } //C:\Users\mlv\Desktop\55.txt C:\Users\АНТ\Desktop\55.txt
 }
