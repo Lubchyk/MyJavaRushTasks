@@ -164,5 +164,15 @@ public class DateExample {
         br2.close();
     }
 
+    /** так можна переведення типів*/
+    public static void printMainInfo(Object object) {
+        if (object instanceof Movable) ((Movable) object).move();
+    }
+    static interface Movable {
+
+        void move();
+    }
+
+
 
 }
