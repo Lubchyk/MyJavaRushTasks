@@ -9,7 +9,7 @@ import java.util.List;
 Первое исключение уже реализовано в методе initExceptions.
 */
 
-public class Solution {
+public class  Solution {
     public static List<Exception> exceptions = new ArrayList<Exception>();
 
     public static void main(String[] args) {
