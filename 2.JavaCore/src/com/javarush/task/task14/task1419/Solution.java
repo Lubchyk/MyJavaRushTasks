@@ -23,12 +23,53 @@ public class  Solution {
     private static void initExceptions() {   //it's first exception
         try {
             float i = 1 / 0;
-
         } catch (Exception e) {
-            exceptions.add(e);
-        }
+            exceptions.add(e);}
 
-        //напишите тут ваш код
+        try {
+            throw  new ArithmeticException();
+        } catch (ArithmeticException e) {
+            exceptions.add(e);}
+
+        try {
+            throw  new ArrayStoreException();
+        } catch (ArrayStoreException e) {
+            exceptions.add(e);}
+
+        try {
+            throw new RuntimeException();
+        } catch (RuntimeException e) {
+            exceptions.add(e);}
+
+        try {
+            throw new ClassNotFoundException();
+        } catch (ClassNotFoundException e) {
+            exceptions.add(e);}
+
+        try {
+            throw new ClassCastException();
+        } catch (ClassCastException e) {
+            exceptions.add(e);}
+
+        try {
+            throw new NullPointerException();
+        } catch (NullPointerException e) {
+            exceptions.add(e);}
+
+        try {
+            throw new NegativeArraySizeException();
+        } catch (NegativeArraySizeException e) {
+            exceptions.add(e);}
+
+        try {
+            throw new IndexOutOfBoundsException();
+        } catch (IndexOutOfBoundsException e) {
+            exceptions.add(e);}
+
+        try {
+            throw new ReflectiveOperationException();
+        } catch (ReflectiveOperationException e) {
+            exceptions.add(e);}
 
     }
 }
