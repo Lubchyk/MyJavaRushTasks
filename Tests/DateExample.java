@@ -169,10 +169,20 @@ public class DateExample {
         if (object instanceof Movable) ((Movable) object).move();
     }
     static interface Movable {
-
         void move();
     }
-
+    /** приклад як дозволяти створювати тільки один-єдиний обєкт класу в системі */
+    public static class Singleton {
+        private static Singleton instance;
+        private Singleton() {
+        }
+        public static Singleton getInstance() {
+            if (instance == null) {
+                instance = new Singleton();
+                return instance;
+            } else return instance;
+        }
+    }
 
 
 }
