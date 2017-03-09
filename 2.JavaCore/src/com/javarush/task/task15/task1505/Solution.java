@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Solution {
     public static interface Alive {
-        boolean containsBones();
+        Object containsBones();
     }
 
     public static class BodyPart implements Alive {
@@ -22,12 +22,15 @@ public class Solution {
             this.name = name;
         }
 
-        public boolean containsBones() {
-            return true;
+        public Object containsBones() {
+            return "Yes";
         }
 
         public String toString() {
-            return containsBones() ? name + " содержит кости" : name + " не содержит кости";
+            if (containsBones().equals("Yes")) return name + " содержит кости";
+            else return name + " не содержит кости";
+
+           // return containsBones() ? name + " содержит кости" : name + " не содержит кости";
         }
     }
 
@@ -39,8 +42,11 @@ public class Solution {
             this.isArtificial = isArtificial;
         }
 
-        public boolean containsBones() {
-            return super.containsBones() && !isArtificial;
+        public Object containsBones() {
+            if (super.containsBones().equals("Yes") && !isArtificial) return "Yes";
+            else return "No";
+//            super.containsBones();
+//            return super.containsBones() && !isArtificial;
         }
     }
 

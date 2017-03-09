@@ -334,11 +334,14 @@ public class Example {
         }
         return true;
     }
-
-public void print(String a, int b, boolean c) {
-    System.out.println(String.format("%s атаковал робота %s, атакована %s, защищена",
+    /**короткий запис вставляє замість %s перемінні*/
+    public void print(String a, int b, boolean c) {
+        System.out.println(String.format("%s атаковал робота %s, атакована %s, защищена",
             a, b, c));
 }
-
+    /**короткий запис if*/
+    public static int min(int a, int b) {
+        return a < b ? a : b;
+    }
 
 }
