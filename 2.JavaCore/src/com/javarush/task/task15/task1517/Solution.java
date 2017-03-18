@@ -21,11 +21,7 @@ public class Solution {
     public static int A = 0;
 
     static {
-        try {
-            throw new  Exception();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        B = new Solution().B/A;
     }
 
     public static int B = 5;
