@@ -2,7 +2,7 @@ package com.javarush.task.task15.task1525;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.Scanner;
 
 /* 
