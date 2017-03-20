@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Array;
+import java.math.BigInteger;
 import java.util.*;
 
 /**
@@ -342,6 +343,16 @@ public class Example {
     /**короткий запис if*/
     public static int min(int a, int b) {
         return a < b ? a : b;
+    }
+
+
+    /**Большие числа в Java. Классы BigInteger и BigDecimal.*/
+    public static void BigInteger() {
+        BigInteger a = BigInteger.ONE;
+        BigInteger b = BigInteger.valueOf(2);
+        BigInteger c = a.multiply(BigInteger.valueOf(5)); //множимо b на 5
+        b = b.add(c); // додаємо
+
     }
 
 }
