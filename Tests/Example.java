@@ -220,6 +220,10 @@ public class Example {
         for (StackTraceElement element : stackTraceElements) {
             p =  element.getMethodName();
         }
+        /**скорочена форма перебігу по стеку і його друку*/
+        for (StackTraceElement element : Thread.currentThread().getStackTrace()) {
+            System.out.println(element);
+        }
         return stackTraceElements[2].getMethodName();
     }
  /**визначаємо тип обєкта */
