@@ -22,6 +22,7 @@ public class Multithreading {
 //        // закоментовані строки пишуться в головному потоці main
 //        TestThread thread = new TestThread();
 //        thread.start();
+        /* thread.join(); */ /** - команда: чекати повного виконання і завершення потоку thread */
         public void run() {
             System.out.println("it's a run method");
         }
