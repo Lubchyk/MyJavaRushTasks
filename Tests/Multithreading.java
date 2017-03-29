@@ -19,11 +19,16 @@ public class Multithreading {
     }
     /** другий варіант того що вище*/
     public static class TestThread2 extends Thread {
+        public static volatile boolean S = false; /**volatile означає що перемінна S  для усіх потоків буде одна і та сама,
+         1а не для кожного різна*/
 //        // закоментовані строки пишуться в головному потоці main
 //        TestThread thread = new TestThread();
 //        thread.start();
         /* thread.join(); */ /** - команда: чекати повного виконання і завершення потоку thread */
+
         public void run() {
+            setPriority(Thread.MAX_PRIORITY);/** задаю пріорітет даному потоку*/
+            getPriority();/**отримую пріоритет потоку*/
             System.out.println("it's a run method");
         }
     }
