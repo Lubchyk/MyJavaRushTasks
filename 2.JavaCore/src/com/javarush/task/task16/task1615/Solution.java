@@ -2,6 +2,17 @@ package com.javarush.task.task16.task1615;
 
 /* 
 Аэропорт
+1. Разберись, что делает программа.
+2. Исправь метод takingOff(взлет) — сейчас он работает оооочень долго. Взлет должен занимать 100 миллисекунд.
+3. Реализуй метод waiting по аналогии с методом takingOff. Время ожидания не должно превышать время взлета.
+
+
+Требования:
+1. Метод takingOff должен работать примерно 100 мс.
+2. Метод waiting должен работать примерно 100 мс.
+3. В методе main должно создаваться 3 самолета.
+4. В классе Solution должен быть вложенный класс Plane (самолет).
+5. В классе Solution должен быть вложенный класс Runway (взлетная полоса).
 */
 
 public class Solution {
@@ -14,11 +25,15 @@ public class Solution {
     }
     private static void waiting() {
         //add your code here - добавь код тут
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+        }
     }
     private static void takingOff() {
         //fix this method - исправь этот метод
         try {
-            Thread.sleep(10000);
+            Thread.sleep(100);
         } catch (InterruptedException e) {
         }
     }
