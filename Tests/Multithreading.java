@@ -21,15 +21,19 @@ public class Multithreading {
     public static class TestThread2 extends Thread {
         public static volatile boolean S = false; /**volatile означає що перемінна S  для усіх потоків буде одна і та сама,
          1а не для кожного різна*/
+
 //        // закоментовані строки пишуться в головному потоці main
 //        TestThread thread = new TestThread();
 //        thread.start();
         /* thread.join(); */ /** - команда: чекати повного виконання і завершення потоку thread */
 
         public void run() {
-            setPriority(Thread.MAX_PRIORITY);/** задаю пріорітет даному потоку*/
-            getPriority();/**отримую пріоритет потоку*/
-            System.out.println("it's a run method");
+            synchronized (this) { /**Синхронізація! ставить монітор який блокує користуванням цього блоку усім потокам,
+             окрім першого, який сюда потрапив і до того часу поки він не вийде інші потоки не зайдуть*/
+                setPriority(Thread.MAX_PRIORITY);/** задаю пріорітет даному потоку*/
+                getPriority();/**отримую пріоритет потоку*/
+                System.out.println("it's a run method");
+            }
         }
     }
     /**приклад того як робити павзу на 1 секунду*/
