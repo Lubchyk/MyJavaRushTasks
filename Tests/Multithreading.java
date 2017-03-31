@@ -33,6 +33,14 @@ public class Multithreading {
                 setPriority(Thread.MAX_PRIORITY);/** задаю пріорітет даному потоку*/
                 getPriority();/**отримую пріоритет потоку*/
                 System.out.println("it's a run method");
+                Thread.currentThread().getName();/**Так звертаємося до поточного потоку */
+                Thread.yield();/**Передає управління іншому потоку в даному кванті часу, а слідуючий квант даного потоку
+                 почнеться зразу після даної строки*/
+                try {
+                    Thread.sleep(0);/** аналогічно стрці  Thread.yield();*/
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
