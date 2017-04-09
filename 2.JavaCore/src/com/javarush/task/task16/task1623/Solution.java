@@ -28,30 +28,27 @@ package com.javarush.task.task16.task1623;
 7. Если количество созданных нитей меньше Solution.count, метод run должен вывести созданную нить в консоль.
 8. Вывод программы должен соответствовать заданию, показывать, что все 15 нитей были созданы.
 */
-
 public class Solution {
     static int count = 15;
     static volatile int countCreatedThreads;
 
     public static void main(String[] args) {
-        System.out.println(new GenerateThread(5));
+        System.out.println(new GenerateThread());
     }
-
     public static class GenerateThread extends Thread {
 
+        public GenerateThread() {
+            super(String.valueOf(++countCreatedThreads));
+            start();
+        }
+        @Override
+        public void run() {
+
+                if (countCreatedThreads < Solution.count) System.out.println(new GenerateThread());
+        }
         @Override
         public String toString() {
-            return getName();
-        }
-
-        public GenerateThread(int g) {
-
-            super(String.valueOf(g));
-        }
-
-        public void run() {
-          if (countCreatedThreads < count)
-            new GenerateThread(countCreatedThreads++);
+            return getName() + " created";
         }
     }
 }
