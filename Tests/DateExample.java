@@ -46,6 +46,11 @@ public class DateExample {
         System.out.println(simpleDateFormat.format(date1));
     }
 
+    /**Потоки вводу (робота із байтами) InputStream
+     *(робота із символами) Reader
+     * Потоки виведення (робота із байтами) OutputStream
+     * (робота із символами) Writer*/
+
     /**
      * копіюємо файли
      */

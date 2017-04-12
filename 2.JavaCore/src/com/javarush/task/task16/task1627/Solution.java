@@ -63,7 +63,6 @@ public class Solution {
             gamer3.interrupt();
         }
     }
-
     public static class Gamer extends Thread {
         private int rating;
         int time;
@@ -75,12 +74,24 @@ public class Solution {
 
         @Override
         public void run() {
-            System.out.println(getName() + ":" + OnlineGame.steps.get(0));
+            time = 1000/rating;
+            //System.out.println(getName() + ":" + OnlineGame.steps.get(0));
+            //Thread.currentThread().yield();
 
-            for (int i = 1; i < OnlineGame.steps.size(); i++) {
-
+            for (int i = 0; i < OnlineGame.steps.size(); i++) {
+                if (OnlineGame.isWinnerFound) break;
+                    try {
+                        System.out.println(getName() + ":" + OnlineGame.steps.get(i));
+                        Thread.currentThread().sleep(time);
+                    } catch (InterruptedException e) {
+                        System.out.println(getName() + ":проиграл");
+                    }
             }
-
+            if(!OnlineGame.isWinnerFound) {
+                OnlineGame.isWinnerFound = true;
+                System.out.println(getName() + ":победитель!");
+            }
+           // else System.out.println(getName() + ":проиграл");
 
             //Add your code here - добавь код тут
         }
