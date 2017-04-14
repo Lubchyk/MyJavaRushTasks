@@ -64,14 +64,21 @@ public class DateExample {
         java.io.FileOutputStream fileOutputStream = new java.io.FileOutputStream(destinationFileName);
 
         int count = 0;
-        while (fileInputStream.available() > 0) {
-            int data = fileInputStream.read();
-            fileOutputStream.write(data);
+        while (fileInputStream.available() > 0) { // available() повертає к-ть не прочитаних байтів
+            int data = fileInputStream.read(); // читає один байт із файла
+
+            byte[] d = new byte[5000];
+            int data1 = fileInputStream.read(d); // а можна і так зчитати зразу цілий блок(масив байтів)
+            fileOutputStream.write(d,0,data1);// і так правильно записати його, якщо його довжина менша ніж byte[5000]
+            fileOutputStream.write(d);// або просто так, але тут не враховується кількість записів у byte[5000]
+
+            fileOutputStream.write(data);   // записуємо прочитаний байт в новий файл
+            fileOutputStream.flush(); // примусово записує у файл всі не записані байти не обов'язково(автомат. викон. перед close())
             count++;
             System.out.println((char) fileInputStream.read()); // дрокуємо отриманий файл
         }
         System.out.println("Скопировано байт " + count);
-        fileInputStream.close();
+        fileInputStream.close(); // закриває поток вісля чого файл не доступний
         fileOutputStream.close();
     }
     /**записуємо строки у файл і виходимо фразою "exit" */

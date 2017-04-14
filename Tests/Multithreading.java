@@ -42,6 +42,10 @@ public class Multithreading {
                     e.printStackTrace();
                 }
             }
+            String s = "5";
+            synchronized (s) {        /** блокуємо тільки даний участок і перемінну  s */
+                System.out.println(s);
+            }
         }
     }
     /**приклад того як робити павзу на 1 секунду*/
