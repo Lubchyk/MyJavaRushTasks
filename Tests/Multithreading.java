@@ -30,6 +30,7 @@ public class Multithreading {
         public void run() {
             synchronized (this) { /**Синхронізація! ставить монітор який блокує користуванням цього блоку усім потокам,
              окрім першого, який сюда потрапив і до того часу поки він не вийде інші потоки не зайдуть*/
+              //  synchronized(TestThread2.class) {...} так блоується цілий клас
                 setPriority(Thread.MAX_PRIORITY);/** задаю пріорітет даному потоку*/
                 getPriority();/**отримую пріоритет потоку*/
                 System.out.println("it's a run method");
