@@ -55,7 +55,20 @@ public class Solution {
         private List<String> result = new ArrayList<String>();
 
         public void run() {
-            //add your code here - добавьте код тут
+            while (!isInterrupted()) {
+
+                try {
+                   if (reader.ready()) {
+                       result.add(reader.readLine());
+                       countReadStrings.getAndSet(countReadStrings.get()+1);
+                   }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                //System.out.println(countReadStrings.addAndGet(1));
+            }
+            //System.out.println(countReadStrings.get());
         }
 
         @Override
