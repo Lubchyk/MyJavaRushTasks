@@ -66,14 +66,21 @@ public class Solution {
 
     public static class ReadFileThread extends Thread implements ReadFileInterface {
 
+        public static String file;
+
         @Override
         public void setFileName(String fullFileName) {
-
+            this.file = fullFileName;
         }
 
         @Override
         public String getFileContent() {
             return null;
+        }
+
+        @Override
+        public void run() {
+
         }
     }
 }
