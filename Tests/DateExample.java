@@ -59,6 +59,7 @@ public class DateExample {
 
         String sourceFileName = reader.readLine();
         String destinationFileName = reader.readLine();
+        BufferedReader reader1 = new BufferedReader(new FileReader("C:\\Users\\mlv\\Desktop\\55.txt")); // можна та зчитувати із файла цілі строки
 
         java.io.FileInputStream fileInputStream = new java.io.FileInputStream(sourceFileName);
         java.io.FileOutputStream fileOutputStream = new java.io.FileOutputStream(destinationFileName);

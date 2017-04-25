@@ -22,6 +22,7 @@ package com.javarush.task.task16.task1630;
 7. Вывод программы должен состоять из 2х строк. Каждая строка - содержимое одного файла.*/
 
 import java.io.*;
+import java.util.Scanner;
 
 
 public class Solution {
@@ -49,15 +50,16 @@ public class Solution {
         ReadFileInterface f = new ReadFileThread();
         f.setFileName(fileName);
         f.start();
+        f.join();
         //add your code here - добавьте код тут
-        System.out.println(f.getFileContent());
+            System.out.println(f.getFileContent());
     }
 
     public interface ReadFileInterface {
 
         void setFileName(String fullFileName);
 
-        String getFileContent();
+        String getFileContent() ;
 
         void join() throws InterruptedException;
 
@@ -67,6 +69,7 @@ public class Solution {
     public static class ReadFileThread extends Thread implements ReadFileInterface {
 
         public static String file;
+        public volatile static String a = "";
 
         @Override
         public void setFileName(String fullFileName) {
@@ -75,12 +78,29 @@ public class Solution {
 
         @Override
         public String getFileContent() {
-            return null;
+            return a;
         }
 
         @Override
         public void run() {
+            BufferedReader reader = null;
+            try {
+                reader = new BufferedReader(new FileReader(file));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            String s;
 
+            try {
+                a = "";
+                while (true) {
+                    s = reader.readLine();
+                    if (s == null) break;
+                    a = a + s + " ";
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
