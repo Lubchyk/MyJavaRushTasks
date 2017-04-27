@@ -1,4 +1,5 @@
 import java.io.*;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -40,10 +41,11 @@ public class DateExample {
     /**
      * показує дату у вказаному форматі, але дата свого формату не міняє
      */
-    public void dateformat(String date) {
+    public void dateformat(String date) throws ParseException {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMM d, yyyy", Locale.US);//вказання фомату і локалізацію
         Date date1 = new Date(date);
         System.out.println(simpleDateFormat.format(date1));
+        new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse("15/04/1990"); //надійний спосіб встановити дату із стрінги
     }
 
     /**Потоки вводу (робота із байтами) InputStream
