@@ -64,6 +64,16 @@ public class Example {
         }
         else System.out.println("Треугольник существует.");
     }
+
+    /**приклад оператора switch  є в задачі JavaCore -- com.javarush.task.task17.task1711*/
+    public static void swi_tch(String s) {
+        switch (s) {
+            case "5" : /*дія*/ break; // break не обов'язково
+            case "6" : /*дія*/ break; // break не обов'язково
+            case "7" : /*дія*/ break; // break не обов'язково
+        }
+
+    }
     /**порівняння довжини двох строк*/
     public static void  comparison(String name1, String name2) {
         if (name1.equals(name2)) System.out.println("Имена идентичны");
