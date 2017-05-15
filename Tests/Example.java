@@ -328,6 +328,8 @@ public class Example {
     /**те саме що і на один вище, але системний метод*/
     public Array sort(Array array) {
         Arrays.sort(new Array[]{array});
+        ArrayList<Integer> byteList = new  ArrayList<Integer>();
+        Collections.sort(byteList);
        /**можна і так сортувати  --- */ // Collections.sort(list);
         return array;
     }
