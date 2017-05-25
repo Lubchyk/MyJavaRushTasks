@@ -22,7 +22,7 @@ public class PaternExample {
 
 
 
-/** Queue - коллекция, предназначенная для хранения элементов в порядке, нужном для их обработки.*/
+/** Queue - коллекция, предназначенная для хранения элементов в порядке, нужном для их обработки. (черга)*/
     public class Collections1 {
         private final Queue<String> orderQueue = new ConcurrentLinkedQueue<String>();
         // http://www.seostella.com/ru/article/2012/08/09/kollekcii-collections-v-java-queue.html
@@ -45,4 +45,98 @@ public class PaternExample {
     }
 
 
+/**шаблон wrapper (decorator) використовується щоб доповнити функціонал новим і не перепис початковий клас
+ * суть заключається в суть заключається в вкладанні декоратора в декоратор в результаті виконання буде перший клас +
+ * всі вкладені декоратори. Ссхема наслідства [інтерфейс]-- {абстракний декоратор}--(класи декоратори)*/
+
+
+    public interface InterfaceComponent {
+        void doOperation();
+    }
+    class MainComponent implements InterfaceComponent {
+        @Override
+        public void doOperation() {
+            System.out.print("World!");
+        }
+    }
+    abstract class Decorator implements InterfaceComponent {
+        protected InterfaceComponent component;
+
+        public Decorator (InterfaceComponent c) {
+            component = c;
+        }
+        @Override
+        public void doOperation() {
+            component.doOperation();
+        }
+        public void newOperation() {
+            System.out.println("Do Nothing");
+        }
+    }
+    class DecoratorSpace extends Decorator{
+
+        public DecoratorSpace(InterfaceComponent c) {
+            super(c);
+        }
+        @Override
+        public void doOperation() {
+            System.out.print(" ");
+            super.doOperation();
+        }
+        @Override
+        public void newOperation() {
+            System.out.println("New space operation");
+        }
+    }
+    class DecoratorComma extends Decorator {
+
+        public DecoratorComma(InterfaceComponent c) {
+            super(c);
+        }
+        @Override
+        public void doOperation() {
+            System.out.print(",");
+            component.doOperation();
+        }
+        @Override
+        public void newOperation() {
+            System.out.println("New comma operation");
+        }
+    }
+    class DecoratorHello extends Decorator {
+
+        public DecoratorHello(InterfaceComponent c) {
+            super(c);
+        }
+        @Override
+        public void doOperation() {
+            System.out.print("Hello");
+            component.doOperation();
+        }
+        @Override
+        public void newOperation() {
+            System.out.println("New hello operation");
+        }
+    }
+    //ВИКОНАННЯ програми
+    class Main {
+        public void main(String... s) {
+            Decorator c = new DecoratorHello( new DecoratorComma( new DecoratorSpace( new MainComponent() ) ) );
+            c.doOperation(); // Результат выполнения программы "Hello, World!"
+             c.newOperation(); // New hello operation
+        }
+
+    }
+
+
+
 }
+
+
+
+
+
+
+
+
+

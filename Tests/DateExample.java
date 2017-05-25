@@ -65,6 +65,7 @@ public class DateExample {
 
         java.io.FileInputStream fileInputStream = new java.io.FileInputStream(sourceFileName);
         java.io.FileOutputStream fileOutputStream = new java.io.FileOutputStream(destinationFileName);
+        java.io.FileOutputStream fileOutputStream1 = new java.io.FileOutputStream(destinationFileName, true);// дописуємо у файл, а не переписуємо його
 
         int count = 0;
         while (fileInputStream.available() > 0) { // available() повертає к-ть не прочитаних байтів
@@ -211,6 +212,23 @@ public class DateExample {
                 return instance;
             } else return instance;
         }
+    }
+    /** Приклад як відбувається делегування*/
+    public class Delegirovanie extends FileOutputStream {
+
+        private FileOutputStream fileOutputStream;
+
+       public Delegirovanie(FileOutputStream fileOutputStream)  throws FileNotFoundException {
+           super("C:/tmp/result.txt");
+           this.fileOutputStream = fileOutputStream;
+        }
+        /**Делегування*/
+        @Override
+        public void write(int b) throws IOException {
+            fileOutputStream.write( b );
+        }
+
+
     }
 
 
