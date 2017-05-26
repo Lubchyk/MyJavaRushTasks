@@ -2,6 +2,8 @@ import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by АНТ on 01.02.2017.
@@ -230,6 +232,14 @@ public class DateExample {
 
 
     }
+    /** Два класа для регулярних виразів Pattern, Matcher */
+    public void regex() {
+        Pattern pattern = Pattern.compile( "[\\s]" ); // задає шаблон (зараз там пробіл) по якому буде проводитися перевірка
+        Matcher matcher = pattern.matcher(" fg"); // фраза яка буде перевірятися
+        boolean b = matcher.matches(); // якщо всі символи із фрази будуть у шаблоні то поверне true
+        //http://info.javarush.ru/translation/2015/02/19/Регулярные-выражения-в-Java.html
+        //https://www.youtube.com/watch?v=OBkDT25X_S8
+                }
 
 
 }
