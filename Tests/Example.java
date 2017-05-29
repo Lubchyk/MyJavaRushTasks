@@ -25,6 +25,8 @@ public class Example {
         String s = "hfhf";
         s = s.toUpperCase();
     }
+    /** Байти 32 пробіл 13 ентер 10 нова строка, Щоб записати в байтах використовуємо "25".getBytes()*/
+
     public Example() throws IOException {
     }
     /** вираховує парне і не парне число механізм слідуючий
