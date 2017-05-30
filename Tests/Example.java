@@ -190,6 +190,7 @@ public class Example {
     }
     /** приклад колекції MAP */
     public void hashMap() {
+        Map<String, String> map = new TreeMap<String, String>(); // записує в себе дані у відсортованому порядку ключа
         Map<String, String> var = new HashMap<String, String>();
         var.put("арбуз","ягода");
         var.put("банан", "трава");
