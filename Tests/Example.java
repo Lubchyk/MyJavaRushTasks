@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Array;
@@ -10,6 +11,8 @@ import java.util.*;
  */
 public class Example {
 
+    /**створюємо файл*/
+    File file = new File( "C:/Users/mlv/Desktop/Новая папка/Lion.avi.part1" ); //file.createNewFile();
     /** вводимо дані із клави варіант 1*/
     Scanner scanner = new Scanner(System.in);
     int a = scanner.nextInt();
