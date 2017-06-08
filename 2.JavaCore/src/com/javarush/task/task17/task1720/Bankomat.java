@@ -51,7 +51,6 @@ public class Bankomat {
         }
     };
 
-
     public static class SpendThread extends Thread {
 
         @Override
