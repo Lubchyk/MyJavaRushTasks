@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.lang.reflect.Array;
 import java.math.BigInteger;
 import java.util.*;
@@ -10,6 +7,9 @@ import java.util.*;
  * Created by mlv on 10.01.2017.
  */
 public class Example {
+    /** коротка форма if*/
+    Object cat;
+    String isCatPresent = cat != null ? "yes" : "no";
 
     /**створюємо файл*/
     File file = new File( "C:/Users/mlv/Desktop/Новая папка/Lion.avi.part1" ); //file.createNewFile();
