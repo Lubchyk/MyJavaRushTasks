@@ -76,6 +76,7 @@ public class DateExample {
             byte[] d = new byte[5000];
             //d = new byte[inputStream.available()];
             int data1 = fileInputStream.read(d); // а можна і так зчитати зразу цілий блок(масив байтів)
+            char data5 = (char) fileInputStream.read(); // отримуємо 1 символ із файла
             fileOutputStream.write(d,0,data1);// і так правильно записати його, якщо його довжина менша ніж byte[5000]
             fileOutputStream.write(d);// або просто так, але тут не враховується кількість записів у byte[5000]
 
