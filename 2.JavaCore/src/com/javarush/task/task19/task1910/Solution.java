@@ -28,7 +28,7 @@ public class Solution {
 
         while (bufferedReader.ready()) {
             String temp = bufferedReader.readLine();
-            temp = temp.replaceAll( "[^a-zA-Z ]", "" );
+            temp = temp.replaceAll( "[^a-zA-Z ]", ""  );
             byte[] s = temp.getBytes();
             for (int i = 0; i < s.length; i++) {
                 if (s[i] == 13 | s[i] == 10) s[i] = a[0];
