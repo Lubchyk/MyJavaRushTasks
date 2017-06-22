@@ -25,8 +25,6 @@ public class Solution {
     public static void main(String[] args) {
 
     }
-
-
     public static class IncomeDataAdapter implements Customer, Contact {
         private IncomeData data;
 
@@ -61,8 +59,6 @@ public class Solution {
             return telFormated;
         }
     }
-
-
     public static interface IncomeData {
         String getCountryCode();        //example UA
 
