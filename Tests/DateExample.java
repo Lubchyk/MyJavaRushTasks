@@ -241,7 +241,32 @@ public class DateExample {
         boolean b = matcher.matches(); // якщо всі символи із фрази будуть у шаблоні то поверне true
         //http://info.javarush.ru/translation/2015/02/19/Регулярные-выражения-в-Java.html
         //https://www.youtube.com/watch?v=OBkDT25X_S8
-                }
+    }
+
+    /**Пишемо свій рідер — обгортку на System.out*/
+    public void criateNewSystem_out() {
+        //запоминаем настоящий PrintStream в специальную переменную
+        PrintStream consoleStream = System.out;
+        //Создаем динамический массив
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        //создаем адаптер к классу PrintStream
+        PrintStream stream = new PrintStream(outputStream);
+        //Устанавливаем его как текущий System.out
+        System.setOut(stream);
+        //Вызываем функцию, которая ничего не знает о наших манипуляциях
+        printSomething();
+        //Преобразовываем записанные в наш ByteArray данные в строку
+        String result = outputStream.toString();
+        //Возвращаем все как было
+        System.setOut(consoleStream);
+
+        //редагуємо строку result і виводимо System.out.println(result)
+    }
+    public static void printSomething() {
+        System.out.println("Hi");
+        System.out.println("My name is Amigo");
+        System.out.println("Bye-bye!");
+    }
 
 
 }
