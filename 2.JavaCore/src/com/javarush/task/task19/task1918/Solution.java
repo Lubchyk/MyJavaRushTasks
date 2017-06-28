@@ -49,7 +49,7 @@ public class Solution {
 
         while (reader2.ready()) {
            String line = reader2.readLine();
-           if (line.contains( "<" + args[0] )) {
+           if (line.contains( "<"  + args[0] )) {
                list.add( line );
            }
            else if (line.contains( "</" + args[0] )) list.add( line );
