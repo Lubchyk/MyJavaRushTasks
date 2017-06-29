@@ -250,8 +250,7 @@ public class Example {
     }
 
     /**при вводі такої фрази пише всі перші букви із великої букви "  мама     мыла раму." */
-    public static void firstLetterToUpper() throws IOException
-    {
+    public static void firstLetterToUpper() throws IOException {
         List<String> space = new ArrayList<String>();
         String countSpace = "";
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -379,5 +378,11 @@ public class Example {
         b = b.add(c); // додаємо
 
     }
+    /** Так створюється перечислення констант*/
+    enum  Type {
+        A1, A2, A3
+       //використовувати потім наприклад так Object d = Type.A1;
+    }
+
 
 }

@@ -39,15 +39,52 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-public class Solution {
+/**public class Solution {
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader( new InputStreamReader( System.in ) );
-        FileReader reader1 = new FileReader( reader.readLine() ) ;
-        BufferedReader reader2 = new BufferedReader( reader1 );
+        BufferedReader reader2 = new BufferedReader( new FileReader(reader.readLine()) );
         List<String> list = new ArrayList<>(  );
+        List<Integer> start = new ArrayList<>(  );
+        List<Integer> end = new ArrayList<>(  );
 
+
+        String line = "";
         while (reader2.ready()) {
+
+            line += reader2.readLine();
+        }
+            int index = 0;
+            while (true) {
+                index = line.indexOf("<" + args[0], index);
+                if (index == -1) break;
+                start.add(index);
+               //System.out.println(index);
+                index++;
+            }
+            index = 0;
+            while (true) {
+                index = line.indexOf("</" + args[0], index);
+                if (index == -1) break;
+                end.add(index);
+                //System.out.println("/" + index);
+                index++;
+            }
+        for (int i = 0; i < start.size(); i++) {
+            System.out.println(line.substring(start.get(i), end.get(i)+7));
+        }
+        reader.close();
+        reader2.close();
+
+
+
+}
+ }*/
+        /*while (reader2.ready()) {
            String line = reader2.readLine();
            if (line.contains( "<"  + args[0] )) {
                list.add( line );
@@ -56,11 +93,58 @@ public class Solution {
         }
         for (int i = 0; i < list.size(); i++) {
             System.out.println(list.get( i ));
+        }*/
+
+
+
+        public class Solution {
+
+            public static void main(String[] args) throws Exception {
+                BufferedReader a = new BufferedReader(new InputStreamReader(System.in));
+                String f = a.readLine();
+                a.close();
+                BufferedReader b = new BufferedReader(new FileReader(f));
+                String c = "";
+                while (b.ready()) {
+                    c = c + b.readLine();
+                }
+                b.close();
+
+                // Заменяем <span> на <span > чтобы не искать по подстроке. Потом вернем обратно
+                c = c.replace("<" + args[0] + ">", "<" + args[0] + " >");
+                // Сколько пар тегов в файле
+                int count = 0;
+                Pattern p = Pattern.compile("</" + args[0] + ">");
+                Matcher m = p.matcher(c);
+                while (m.find())
+                    count++;
+                // Если открывающийся тег, заносим в мапу индекс тега со значением null.
+                // Если закрывающийся тег, то ищем последний элемент мапы с null и пищем туда индекс тега
+                Map<Integer, Integer> map = new TreeMap<>();
+                int pos = -1;
+                for (int i = 0; i < count * 2; i++) {
+                    int posTagBegin = c.indexOf("<" + args[0] + " ", pos + 1);
+                    int posTagEnd = c.indexOf("</" + args[0] + ">", pos + 1);
+                    if (posTagBegin >= 0 && posTagBegin < posTagEnd) {
+                        pos = posTagBegin;
+                        map.put(posTagBegin, null);
+                    } else {
+                        ArrayList<Integer> keys = new ArrayList<>(map.keySet());
+                        for (int j = keys.size() - 1; j >= 0; j--) {
+                            if (map.get(keys.get(j)) == null) {
+                                map.put(keys.get(j), posTagEnd);
+                                break;
+                            }
+                        }
+                        pos = posTagEnd;
+                    }
+                }
+                // Вывод
+                for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+                    System.out.println(c.substring(entry.getKey(), entry.getValue() + args[0].length() +3).replace("<" + args[0] + " >", "<" + args[0] + ">"));
+                }
+            }
         }
-        reader.close();
-        reader1.close();
-        reader2.close();
+    //C:/Users/ANT/Desktop/Нова папка (3)/4.html
+    //C:/Users/mlv/Desktop/Новая папка/1.html
 
-
-    }//C:/Users/ANT/Desktop/Нова папка (3)/4.html
-}
