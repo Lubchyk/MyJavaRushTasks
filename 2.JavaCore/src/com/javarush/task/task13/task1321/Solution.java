@@ -13,7 +13,6 @@ public class Solution {
         System.out.println(Dream.HOBBIE.toString());
         System.out.println(new Hobbie().INDEX);
     }
-
     interface Desire {
     }
 
