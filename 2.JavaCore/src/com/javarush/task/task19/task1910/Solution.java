@@ -31,7 +31,7 @@ public class Solution {
             temp = temp.replaceAll( "[^a-zA-Z ]", ""  );
             byte[] s = temp.getBytes();
             for (int i = 0; i < s.length; i++) {
-                if (s[i] == 13 | s[i] == 10) s[i] = a[0];
+                if (s[i] == 13 || s[i] == 10 ) s[i] = a[0];
             }
             bufferedWriter.write( temp );
         }
@@ -39,5 +39,5 @@ public class Solution {
         bufferedReader.close();
         bufferedWriter.close();
 
-    }//C:/Users/ANT/Desktop/Нова папка (3)/1.txt
+    }//C:\Users\mlv\Desktop\Новая папка/2.txt
 }
