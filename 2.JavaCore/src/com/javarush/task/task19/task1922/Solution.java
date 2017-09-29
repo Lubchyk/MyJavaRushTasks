@@ -39,6 +39,7 @@ public class Solution {
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String address = reader.readLine();
+        reader.close();
         BufferedReader reader1 = new BufferedReader(new FileReader(address));
 
         while (reader1.ready()) {
@@ -51,6 +52,7 @@ public class Solution {
         }
         reader.close();
         reader1.close();
+        reader.close();
     }
     public static boolean checkLine(String[] wordsFromFile) {
         int count = 0;
