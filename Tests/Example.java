@@ -7,6 +7,9 @@ import java.util.*;
  * Created by mlv on 10.01.2017.
  */
 public class Example {
+    /**reverse*/
+    String line = "123";
+    String reverse = new StringBuffer(line).reverse().toString();
     /** коротка форма if*/
     Object cat;
     String isCatPresent = cat != null ? "yes" : "no";
