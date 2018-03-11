@@ -17,7 +17,7 @@ public class Solution
         //исправьте outputStream/inputStream в соответствии с путем к вашему реальному файлу
         try
         {
-            File your_file_name = new  File ("/home/ant/IdeaProjects/JavaRushTasks/2.JavaCore/src/com/javarush/task/task20/task2001/file.txt");
+            File your_file_name = new  File ("/home/ant/IdeaProjects/JavaRushTasks/2.JavaCore/src/com/javarush/task/task20/task2001/file.tmp");
             OutputStream outputStream = new FileOutputStream(your_file_name);
             InputStream inputStream = new FileInputStream(your_file_name);
             Human ivanov = new Human("Ivanov", new Asset("home"), new Asset("car"));

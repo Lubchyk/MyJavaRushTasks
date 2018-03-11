@@ -56,6 +56,10 @@ public class User {
 
         private String name;
 
+        public void setName(String name) {
+            this.name = name;
+        }
+
         private Country(String name) {
             this.name = name;
         }
