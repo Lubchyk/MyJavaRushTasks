@@ -268,5 +268,38 @@ public class DateExample {
         System.out.println("Bye-bye!");
     }
 
+    /** так зберігажєсо дані в файл і загружаємо із файла*/
+    public static class ClassWithStatic {
+        public static String staticString1 = "it's test static string";
+        public int f;
+        public int g;
+
+        public void save(OutputStream outputStream) throws Exception {
+            PrintWriter printWriter = new PrintWriter(outputStream);
+            printWriter.println(f);
+            printWriter.println(g);
+            System.out.println();
+            printWriter.println(staticString1);
+            printWriter.flush();
+        }
+        public void load(InputStream inputStream) throws Exception {
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            f = Integer.parseInt(bufferedReader.readLine());
+            g = Integer.parseInt(bufferedReader.readLine());
+            staticString1 = bufferedReader.readLine();
+        }
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            ClassWithStatic that = (ClassWithStatic) o;
+            if (f != that.f) return false;
+            return g == that.g; }
+        @Override
+        public int hashCode() {
+            int result = f;
+            result = 31 * result + g;
+            return result; }
+    }
 
 }

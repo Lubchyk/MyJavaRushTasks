@@ -10,6 +10,9 @@ public class Example {
     /**reverse*/
     String line = "123";
     String reverse = new StringBuffer(line).reverse().toString();
+
+    /** клас для роботи із пропертями*/
+    public static Properties properties = new Properties();
     /** коротка форма if*/
     Object cat;
     String isCatPresent = cat != null ? "yes" : "no";
