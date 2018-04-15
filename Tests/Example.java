@@ -11,6 +11,7 @@ public class Example {
     String line = "123";
     String reverse = new StringBuffer(line).reverse().toString();
 
+
     /** клас для роботи із пропертями*/
     public static Properties properties = new Properties();
     /** коротка форма if*/
@@ -33,6 +34,11 @@ public class Example {
     public void toUpperCase() {
         String s = "hfhf";
         s = s.toUpperCase();
+    }
+    /** форматуємо строку в https://javarush.ru/quests/lectures/questmultithreading.level02.lecture06
+     * "МНЕ нравится курс JavaRush" */
+    public void format() {
+        System.out.println(String.format("%3$S %4$s %2$s %1$s", "JavaRush", "курс", "мне", "нравится"));
     }
     /** Байти 32 пробіл 13 ентер 10 нова строка, Щоб записати в байтах використовуємо "25".getBytes()*/
 

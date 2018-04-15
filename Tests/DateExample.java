@@ -302,4 +302,14 @@ public class DateExample {
             return result; }
     }
 
+    /** Заміряємо час і пам'ять виконнання метода */
+    public void check () {
+        long before = System.currentTimeMillis();
+        // some action
+        long after = System.currentTimeMillis();
+        long l3 = Runtime.getRuntime().freeMemory();
+        long l6 = Runtime.getRuntime().totalMemory();
+        System.out.println(((l6 - l3) / 1000000) + " mb "  + ((after - before) / 1000d) + " sec");
+    }
+
 }
