@@ -13,12 +13,13 @@ public final class Test2 extends java.io.File
     }
     public static void main(String[] args) {
 
-        String absolutePath1 = new File("").getAbsolutePath() + "/src/main/resources/picture/";
+        String absolutePath1 = new File("").getAbsolutePath()  + File.separator
+                + "src"+ File.separator + "main"+ File.separator +"resources"+ File.separator +"picture" + File.separator;
 //        Test2 cpp = new Test2();//
 //        System.out.println(cpp.getAbsoluteFile());
 //        File file = new File(new File("").getAbsolutePath());
         String absolutePath = new File("").getAbsolutePath();
-        System.out.println(absolutePath);
+        System.out.println(absolutePath1);
 
     }
 
