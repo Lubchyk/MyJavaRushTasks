@@ -21,6 +21,8 @@ public final class Test2 extends java.io.File
         String absolutePath = new File("").getAbsolutePath();
         System.out.println(absolutePath1);
 
+        StringBuffer stringBuffer = new StringBuffer("fdsfs");
+        StringBuilder stringBuilder = new StringBuilder("fdf");
     }
 
 }
