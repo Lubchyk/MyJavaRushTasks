@@ -37,7 +37,8 @@ public class Example {
     }
     /** форматуємо строку в https://javarush.ru/quests/lectures/questmultithreading.level02.lecture06
      * "МНЕ нравится курс JavaRush" */
-    public void format() {
+    public void format() { //http://study-java.ru/uroki-java/formatirovanie-chisel-i-texta-v-java/
+        //"%1$td:%1$tm:%1$ty %1$tH:%1$tM:%1$tS"; //date
         System.out.println(String.format("%3$S %4$s %2$s %1$s", "JavaRush", "курс", "мне", "нравится"));
     }
     /** Байти 32 пробіл 13 ентер 10 нова строка, Щоб записати в байтах використовуємо "25".getBytes()*/
