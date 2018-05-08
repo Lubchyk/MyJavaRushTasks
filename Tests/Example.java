@@ -397,5 +397,31 @@ public class Example {
        //використовувати потім наприклад так Object d = Type.A1;
     }
 
+    /**+380501234567 - true
+     +38(050)1234567 - true
+     +38050123-45-67 - true
+     050123-4567 - true
+     +38)050(1234567 - false
+     +38(050)1-23-45-6-7 - false
+     050ххх4567 - false
+     050123456 - false
+     (0)501234567 - false
+     * перевірка номера телефона
+     * @param telNumber
+     * @return
+     */
+    public static boolean checkTelNumber(String telNumber) {
+        if (Objects.isNull(telNumber)) return  false;
+        String temp = telNumber;
+        int length = temp.replaceAll("\\D", "").length();
+        if (telNumber.contains("[a-aA-Z]")) {return false;}
+        if (length==12) {
+            return telNumber.matches("(^\\+{1})\\d*(\\(\\d{3}\\))?\\d*(\\-?\\d+)?\\-?\\d*\\d$");
+        }
+        else if (length==10) {
+            return telNumber.matches("^(\\d|\\(\\d{3}\\))\\d*(\\-?\\d+)?\\-?\\d*\\d$");
+        }
+        return false;
+    }
 
 }
