@@ -424,4 +424,29 @@ public class Example {
         return false;
     }
 
+    /**
+     * На первой строчке мы создаем объект objectOriginal, который будем клонировать. Он и все его подобъекты должны поддерживать сериализацию.
+     На третьей строчке мы создаем ByteArrayOutputStream – массив байт, который будет динамически растягиваться при добавлении к нему новых данных (как ArrayList).
+     На 4-й строчке мы создаем ObjectOutputStream, который используется для сериализации.
+     В пятой строчке мы сериализуем объект objectOriginal в массив байт с помощью outputStream и сохраняем его в массив writeBuffer.
+     На 8-й строчке мы преобразовываем writeBuffer в обычный массив байт. Дальше мы из этого массива будем «читать» наш новый объект.
+     На 9-й строчке мы оборачиваем buffer в класс ByteArrayInputStream, чтобы из него можно было читать, как из InputStream.
+     На 10-й строчке передаем объект readBuffer классу ObjectInputStream, для чтения (десериализации) объекта.
+     На 11-й строчке мы читаем наш объект и преобразуем его к типу BigObject.
+     */
+
+    public void makeClone() throws IOException, ClassNotFoundException {
+        Object objectOriginal = new Object();
+
+        ByteArrayOutputStream writeBuffer = new ByteArrayOutputStream();
+        ObjectOutputStream outputStream = new ObjectOutputStream(writeBuffer);
+        outputStream.writeObject(objectOriginal);
+        outputStream.close();
+
+        byte[] buffer = writeBuffer.toByteArray();
+        ByteArrayInputStream readBuffer = new ByteArrayInputStream(buffer);
+        ObjectInputStream inputStream = new ObjectInputStream(readBuffer);
+        Object objectCopy = (Object)inputStream.readObject();
+    }
+
 }
