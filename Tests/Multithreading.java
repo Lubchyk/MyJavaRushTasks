@@ -53,4 +53,34 @@ public class Multithreading {
     public static void pause() throws InterruptedException {
         Thread.sleep(1000);
     }
+
+
+    /**
+     * ногда в Java встречается ситуация, когда нужно унаследовать класс от нескольких классов.
+     * Т.к. множественное наследование классов в Java запрещено, эту проблему решают с помощью внутренних классов:
+     * в нужном нам классе мы объявляем внутренний класс и наследуем его от требуемого класса. Пример:
+     */
+    class Tiger extends Example.Cat
+    {
+        public void tigerRun()
+        {
+  //.....
+        }
+
+        public void startTiger()
+        {
+            thread.start();
+        }
+
+        private TigerThread thread = new TigerThread();
+
+        private class TigerThread extends Thread
+        {
+            public void run()
+            {
+                tigerRun();
+            }
+        }
+    }
+
 }
