@@ -397,6 +397,18 @@ public class Example {
        //використовувати потім наприклад так Object d = Type.A1;
     }
 
+    /**
+     * for each для енума
+     */
+    public void method(){
+        for (Type direction : Type.values()) {
+            direction.toString(); // перетворюємо в строку
+            direction = Type.valueOf("A1"); // перетворюємо строку в енам
+            System.out.println(direction.ordinal()); //показує номер значення енума
+        }
+    }
+
+
     /**+380501234567 - true
      +38(050)1234567 - true
      +38050123-45-67 - true
