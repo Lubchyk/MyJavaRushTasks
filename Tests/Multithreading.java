@@ -84,3 +84,31 @@ public class Multithreading {
     }
 
 }
+
+/**
+ * так можна перехоплювати exception із іншого потоку
+ */
+class Solution extends Thread {
+
+    public Solution() {
+    }
+    @Override
+    public void run() {
+        super.run();
+        int a = 5 / 0;
+    }
+    public static void main(String[] args) {
+
+        Solution solution = new Solution();
+        solution.setUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+            @Override
+            public void uncaughtException(Thread t, Throwable e) {
+                if (e instanceof Error) System.out.println("Нельзя дальше работать");
+                else if (e instanceof Exception) System.out.println("Надо обработать");
+                else if (e instanceof Throwable) System.out.println("Поживем - увидим");
+            }
+        });
+        solution.start();
+    }
+}
+
