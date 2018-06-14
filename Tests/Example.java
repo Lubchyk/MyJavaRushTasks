@@ -461,4 +461,59 @@ public class Example {
         Object objectCopy = (Object)inputStream.readObject();
     }
 
+    /**Comparator порівнює два одинакових обєкта
+     * Идет поочередное использование компараторов, если хоть один из них скажет, что объекты различаются(выдаст,
+     * число отличное от нуля), то метод вернет это число
+     * @param <T>
+     */
+    public static class CustomizedComparator<T> implements Comparator<T> {
+        private Comparator<T> [] comparators;
+
+        public CustomizedComparator(Comparator<T>... comparators) {
+            this.comparators = comparators;
+        }
+        @Override
+        public int compare(T o1, T o2) {
+            int result = 0;
+            for (Comparator comparator : comparators) {
+                result = comparator.compare(o1, o2);
+                if (result != 0) {
+                    break;
+                }
+            }
+            return result;
+        }
+    }
+
+    /**
+     * Comparable порівнює себе із передаваємим об'єктом
+     */
+    public static class Soldier implements Comparable<Soldier>{
+        private String name;
+        private int height;
+
+        public Soldier(String name, int height) {
+            this.name = name;
+            this.height = height;
+        }
+
+        public int compareTo(Soldier solder) {
+            if (this.height < solder.height) return 1;
+            else if (this.height > solder.height) return -1;
+            else return 0;
+        }
+    }
+
+    /**
+     * @param array
+     * @return індекс медіани масива
+     */
+    public int createMediana(int[] array) {
+        return array.length % 2 != 0 ? array[array.length / 2] : (int)((array[array.length / 2] + array[array.length / 2 - 1]) / 2);
+    }
+
+
+
+
+
 }
