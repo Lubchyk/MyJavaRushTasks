@@ -512,7 +512,18 @@ public class Example {
         return array.length % 2 != 0 ? array[array.length / 2] : (int)((array[array.length / 2] + array[array.length / 2 - 1]) / 2);
     }
 
+    /**
+     * так отримуємо шлях до файла в середині проекту
+     */
+    public void getPathToFile() {
+        //v1
+        ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+        File file = new File(classloader.getResource("file555.txt").getFile());
+        String path = file.getPath();
 
+        //v2 better way
+        String pathToTemplates = new File("").getAbsolutePath() + "file555.txt";
+    }
 
 
 

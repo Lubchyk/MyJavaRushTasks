@@ -11,7 +11,7 @@ public final class Test2 extends java.io.File
     {
         return pathname;//
     }
-    public static void main(String[] args) {
+    public static void main1(String[] args) {
 
         String absolutePath1 = new File("").getAbsolutePath()  + File.separator
                 + "src"+ File.separator + "main"+ File.separator +"resources"+ File.separator +"picture" + File.separator;
@@ -25,4 +25,14 @@ public final class Test2 extends java.io.File
         StringBuilder stringBuilder = new StringBuilder("fdf");
     }
 
+    public static void main(String[] args) {
+        getPathToFile();
+    }
+    public static void getPathToFile() {
+        ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+        File file = new File(classloader.getResource("file555.txt").getFile());
+        String path = file.getPath();
+
+        String pathToTemplates = new File("").getAbsolutePath() + "/resources/file555.txt";
+    }
 }
