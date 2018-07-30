@@ -26,7 +26,20 @@ public final class Test2 extends java.io.File
     }
 
     public static void main(String[] args) {
-        getPathToFile();
+        int v = (int) (Math.random() * 100);
+
+        System.out.println(v);
+
+
+//        String str = "jsonData.FATCA.COMPANY.OTHER.CONRTOLLINGPERSON1.ORGNAMEENGL";
+//        int ind = str.lastIndexOf("1");
+//        if( ind>=0 )
+//            str = new StringBuilder(str).replace(ind- 10, ind+1,"0").toString();
+//        System.out.println(str);
+
+
+
+//        getPathToFile();
     }
     public static void getPathToFile() {
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();

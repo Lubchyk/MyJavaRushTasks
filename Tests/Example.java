@@ -86,9 +86,9 @@ public class Example {
     /**приклад оператора switch  є в задачі JavaCore -- com.javarush.task.task17.task1711*/
     public static void swi_tch(String s) {
         switch (s) {
-            case "5" : /*дія*/ break; // break не обов'язково
-            case "6" : /*дія*/ break; // break не обов'язково
-            case "7" : /*дія*/ break; // break не обов'язково
+            case "5" : /*дія*/ break;
+            case "6" : /*дія*/ break;
+            case "7" : /*дія*/ break;
         }
 
     }
