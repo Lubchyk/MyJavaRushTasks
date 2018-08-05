@@ -526,5 +526,15 @@ public class Example {
     }
 
 
-
+    /** метод для уникнення дедлока при роботі із двома об'єктами */
+    public void safeMethod(Object obj1, Object obj2) {
+        Object max = obj1.hashCode() > obj2.hashCode() ? obj1 : obj2;
+        Object min = obj1.hashCode() > obj2.hashCode() ? obj2 : obj1;
+        synchronized (max) {
+            //some method;
+            synchronized (min) {
+                //some method(obj1, obj2);
+            }
+        }
+    }
 }
