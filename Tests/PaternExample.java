@@ -1,11 +1,11 @@
-import java.util.Comparator;
-import java.util.Queue;
+import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * Created by АНТ on 11.03.2017.
  */
 public class PaternExample {
+    private ArrayList<Integer> array;
 
     /**приклад реалізації шаблона Singleton з лінивою ініціалізацією(lazy initialization)*/
     public class Sun {
@@ -19,6 +19,14 @@ public class PaternExample {
         }
     }
 
+    /**Как запретить модифицировать данные массива через геттер? Либо возвращать копию*/
+    public final List<Integer> getArray1() {
+        return new ArrayList<>(array);
+    }
+    /**либо оборачивать в иммутабельный адаптер*/
+    public final List<Integer> getArray2() {
+        return Collections.unmodifiableList(array);
+    }
 
 
 
