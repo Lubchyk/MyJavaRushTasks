@@ -1,16 +1,20 @@
+import org.apache.commons.lang3.SerializationUtils;
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.*;
 import java.lang.reflect.Array;
 import java.math.BigInteger;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 /**
  * Created by mlv on 10.01.2017.
  */
-public class Example {
+public class Example implements Serializable {
     /**reverse*/
     String line = "123";
     String reverse = new StringBuffer(line).reverse().toString();
-
 
     /** клас для роботи із пропертями*/
     public static Properties properties = new Properties();
@@ -35,6 +39,11 @@ public class Example {
         String s = "hfhf";
         s = s.toUpperCase();
     }
+    /**Отримуєшо Path із строки*/
+    public void getPath(String s) {
+        Path path = Paths.get(s);
+    }
+
     /** форматуємо строку в https://javarush.ru/quests/lectures/questmultithreading.level02.lecture06
      * "МНЕ нравится курс JavaRush" */
     public void format() { //http://study-java.ru/uroki-java/formatirovanie-chisel-i-texta-v-java/
@@ -459,6 +468,12 @@ public class Example {
         ByteArrayInputStream readBuffer = new ByteArrayInputStream(buffer);
         ObjectInputStream inputStream = new ObjectInputStream(readBuffer);
         Object objectCopy = (Object)inputStream.readObject();
+    }
+
+    /**Короткий спосіб клонувати обєкт і без інтерфейсу Cloneable але із інтерфейсом Serializable */
+    public void shortClone(Object someObject) {
+        //import org.apache.commons.lang3.SerializationUtils;  //імпорт
+        Example clone = SerializationUtils.clone(this);
     }
 
     /**Comparator порівнює два одинакових обєкта
