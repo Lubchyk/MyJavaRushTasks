@@ -29,7 +29,14 @@ public final class Test2 extends java.io.File
         int v = (int) (Math.random() * 100);
 
         System.out.println(v);
+        File file = new File("/home/ant/projects/learning/JavaRushTasks/out.log");
 
+        String a = "kdljfksj/jfslf/jfksljf.html";
+        a = file.getName();
+        int i = a.lastIndexOf(".");
+
+        String substring = a.substring(i);
+        System.out.println(substring);
 
 //        String str = "jsonData.FATCA.COMPANY.OTHER.CONRTOLLINGPERSON1.ORGNAMEENGL";
 //        int ind = str.lastIndexOf("1");
