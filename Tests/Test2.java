@@ -1,4 +1,8 @@
 import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.file.Paths;
 
 public final class Test2 extends java.io.File
 {
@@ -25,18 +29,15 @@ public final class Test2 extends java.io.File
         StringBuilder stringBuilder = new StringBuilder("fdf");
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws URISyntaxException, IOException, InterruptedException {
         int v = (int) (Math.random() * 100);
 
         System.out.println(v);
-        File file = new File("/home/ant/projects/learning/JavaRushTasks/out.log");
-
-        String a = "kdljfksj/jfslf/jfksljf.html";
-        a = file.getName();
-        int i = a.lastIndexOf(".");
-
-        String substring = a.substring(i);
-        System.out.println(substring);
+//        URI uri = new URI("/home/ant/projects/learning/JavaRushTasks/out.log");
+//        String path =  Paths.get(uri).toString();
+        String[] cmdArray = new String[]{"gedit", "/home/ant/projects/learning/JavaRushTasks/out.log"};
+        Process notepad  = Runtime.getRuntime().exec(cmdArray);
+        notepad.waitFor();
 
 //        String str = "jsonData.FATCA.COMPANY.OTHER.CONRTOLLINGPERSON1.ORGNAMEENGL";
 //        int ind = str.lastIndexOf("1");

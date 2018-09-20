@@ -4,6 +4,8 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.*;
 import java.lang.reflect.Array;
 import java.math.BigInteger;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
@@ -551,5 +553,13 @@ public class Example implements Serializable {
                 //some method(obj1, obj2);
             }
         }
+    }
+    /**приклад запуску посторонньої програми */
+    public void runProgram() throws URISyntaxException, IOException, InterruptedException {
+//        URI uri = new URI("/home/ant/projects/learning/JavaRushTasks/out.log");
+//        String path =  Paths.get(uri).toString();
+        String[] cmdArray = new String[]{"gedit", "/home/ant/projects/learning/JavaRushTasks/out.log"};
+        Process notepad  = Runtime.getRuntime().exec(cmdArray);
+        notepad.waitFor();
     }
 }
