@@ -1,9 +1,16 @@
 import java.io.*;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 /**
  * Created by АНТ on 01.02.2017.
@@ -197,6 +204,93 @@ public class DateExample {
         writer.close();
     }
 
+    public static byte[] readBytes(String fileName) throws IOException {
+        return Files.readAllBytes(Paths.get(fileName)); // читає файл
+    }
+
+    public static List<String> readLines(String fileName) throws IOException {
+        return Files.readAllLines(Paths.get(fileName)); //повертає список строк файла
+    }
+
+    public static void writeBytes(String fileName, byte[] bytes) throws IOException {
+        Files.write(Paths.get(fileName), bytes); // пише у файл байти
+    }
+
+    public static void copy(String resourceFileName, String destinationFileName) throws IOException {
+        Files.move(Paths.get(resourceFileName), Paths.get(destinationFileName)); // копіюює файл із одного місця в інше
+    }
+
+
+
+    /** Находить імена всіх файлів в папці і підпапках, використовує чергу */
+    public static List<String> getFileTree(String root) throws IOException {
+        List<String> fileTree = new ArrayList<>();
+        File files = new File(root);
+        Queue<File> queue = new PriorityQueue<>();
+        File[] listFiles = files.listFiles();
+        for (int i = 0; i < listFiles.length; i++) {
+            if (listFiles[i].isDirectory()) {
+                queue.add(listFiles[i]);
+            }
+            else if (listFiles[i].isFile()) fileTree.add(listFiles[i].getAbsolutePath());
+        }
+        if (!queue.isEmpty()) {
+            while (!queue.isEmpty()) {
+                File file = queue.poll();
+                if (file.isDirectory()) {
+                    File[] tempListFiles = file.listFiles();
+                    for (int i = 0; i < tempListFiles.length; i++) {
+                        if (tempListFiles[i].isDirectory()) queue.add(tempListFiles[i]);
+                        else if (tempListFiles[i].isFile()) fileTree.add(tempListFiles[i].getAbsolutePath());
+                    }
+                }
+                else if (file.isFile()) fileTree.add(file.getAbsolutePath());
+            }
+        }
+        return fileTree;
+    }
+    /**Скачує з інтернету файл*/
+    public void downloadFromInternet() throws IOException {
+        URL url = new URL("https://www.google.com.ua/images/srpr/logo11w.png");
+        InputStream inputStream = url.openStream();
+        Path tempFile = Files.createTempFile("temp-",".tmp");
+        Files.copy(inputStream, tempFile);
+    }
+
+    /**Вираховуємо кількість файлів і папок, а також (розмір на точно)*/
+    public void  countOfFilesAndFolders(Path path) throws IOException {
+        long countOfFolders = Files.find(
+                Paths.get(path.toString()),
+                15550,  // how deep do we want to descend
+                (paths, attributes) -> attributes.isDirectory()
+        ).count() - 1; // '-1' because '/tmp' is also counted in
+        long countOfFiles = Files.find(
+                Paths.get(path.toString()),
+                15550,  // how deep do we want to descend
+                (paths, attributes) -> attributes.isRegularFile()
+        ).count(); // '-1' because '/tmp' is also counted in
+        long size = Files.walk(path).mapToLong( p -> p.toFile().length() ).sum();
+    }
+    /**Варіант №2 ^^^ */
+    public void countOf(Path path) throws IOException {
+        long countDirs =  Files.walk(path).filter(Files::isDirectory).count() - 1;
+        long countFiles =  Files.walk(path).filter(Files::isRegularFile).count();
+        long countSizes =  Files.walk(path).filter(Files::isRegularFile).map(Path::toFile).mapToLong(File::length).sum();
+    }
+    /** Варіант №3 ^^^ */
+    public void count(Path path) throws IOException {
+        if (Files.isDirectory(path)) {
+            AtomicInteger directories = new AtomicInteger();
+            AtomicInteger files = new AtomicInteger();
+            Files.walk(path)
+                    .forEach(f -> {
+                        if (Files.isDirectory(f)) directories.getAndIncrement();
+                        else {
+                            files.getAndIncrement();
+                        }
+                    });
+        }
+    }
 
     /** так можна виконувати переведення типів*/
     public static void printMainInfo(Object object) {
@@ -300,6 +394,19 @@ public class DateExample {
             int result = f;
             result = 31 * result + g;
             return result; }
+    }
+
+    /**створює архів і пише в нього файл*/
+    public void archive() throws IOException {
+        FileOutputStream zipFile = new FileOutputStream("c:/archive.zip");
+        ZipOutputStream zip = new ZipOutputStream(zipFile);
+//кладем в него ZipEntry – «архивный объект»
+        zip.putNextEntry(new ZipEntry("document.txt"));
+//копируем файл «document-for-archive.txt» в архив под именем «document.txt»
+        File file = new File("c:/document-for-archive.txt");
+        Files.copy(file.toPath(), zip);
+// закрываем архив
+        zip.close();
     }
 
     /** Заміряємо час і пам'ять виконнання метода */
