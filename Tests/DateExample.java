@@ -96,6 +96,17 @@ public class DateExample {
         fileInputStream.close(); // закриває поток вісля чого файл не доступний
         fileOutputStream.close();
     }
+    /** пишемо і читаємо файл із середини*/
+    public void readWrite(String path, long index, String text) throws IOException {
+        RandomAccessFile file = new RandomAccessFile(path, "rw");
+        byte[] line = new byte[text.getBytes().length];
+        file.seek(index);
+        file.read(line, 0, line.length);
+        String s = new String(line);
+        file.seek(file.length()); // переміщає курсор в кінець файла
+        file.write("hello".getBytes());
+    }
+
     /**записуємо строки у файл і виходимо фразою "exit" */
     public void fileWrite() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -219,8 +230,6 @@ public class DateExample {
     public static void copy(String resourceFileName, String destinationFileName) throws IOException {
         Files.move(Paths.get(resourceFileName), Paths.get(destinationFileName)); // копіюює файл із одного місця в інше
     }
-
-
 
     /** Находить імена всіх файлів в папці і підпапках, використовує чергу */
     public static List<String> getFileTree(String root) throws IOException {

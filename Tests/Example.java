@@ -8,6 +8,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.MessageDigest;
+import java.security.SecureRandom;
 import java.util.*;
 
 /**
@@ -445,6 +447,35 @@ public class Example implements Serializable {
             return telNumber.matches("^(\\d|\\(\\d{3}\\))\\d*(\\-?\\d+)?\\-?\\d*\\d$");
         }
         return false;
+    }
+    /**Проста генерація рандомного параль*/
+    public static ByteArrayOutputStream getPassword() throws IOException {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        SecureRandom random = new SecureRandom();
+        String result = "";
+        String letter = "abcdefghijklmnopqrstuvwxyz";
+        String number = "0123456789";
+        String specChars = "!@#$%^&*_=+-/";
+        String dic = letter + number + letter.toUpperCase();
+        for (int i = 0; i < 10; i++) {
+            int index = random.nextInt(dic.length());
+            result += dic.charAt(index);
+        }
+        outputStream.write(result.getBytes());
+        return outputStream;
+    }
+    /**Вичисляє хеш по алгоритму MD5*/
+    public static String compareMD5(ByteArrayOutputStream byteArrayOutputStream) throws Exception {
+        MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+        messageDigest.reset();
+        messageDigest.update(byteArrayOutputStream.toByteArray());
+        byte[] digest = messageDigest.digest();
+        BigInteger bigInt = new BigInteger(1, digest);
+        String md5Hex = bigInt.toString(16);
+        while( md5Hex.length() < 32 ){
+            md5Hex = "0" + md5Hex;
+        }
+        return md5Hex;
     }
 
     /**
