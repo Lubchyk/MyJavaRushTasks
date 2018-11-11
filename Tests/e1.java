@@ -16,5 +16,9 @@ public class e1 {
 
         System.out.println(a);
         System.out.println(g);
+        String str = "_2jsonData.client.company.foreignname.foreignfullname4545_2";
+
+         str = str.replaceAll("[_0-9]+$", "");
+        System.out.println(str);
     }
 }
